@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Tahoma', sans-serif;
+}
+
+main {
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.conteudo {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+/* saudação no topo */
+.saudacao {
+  font-size: clamp(3rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: #fff;
+  -webkit-text-stroke: 2px #2f4a17;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  margin-bottom: 50px;
+}
+
+/* bloco do título PORTIFÓLIO + Profissional sobreposto */
+.titulo-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 50px;
+}
+
+.titulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 200px;
+  line-height: 0.9;
+  color: #29580b;
+  -webkit-text-stroke: 0.1px #0d2b00;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+  letter-spacing: 5px;
+}
+
+.subtitulo {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 55px;
+  color: #111;
+}
+
+/* ===== NAV DE PASTAS ===== */
+.folder-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(16px, 3vw, 40px);
+  margin-top: 10px;
+}
+
+.folder-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  width: 111px;
+  transition: transform 0.2s ease;
+}
+
+.folder-item:hover {
+  transform: translateY(-6px);
+}
+
+img {
+  width: 56px;
+  height: 56px;
+}
+
+.folder-item span {
+  margin-top: 6px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 700px) {
+   .saudacao {
+    font-size: 2.4rem;
+  }
+  .titulo {
+    font-size: 120px;
+  }
+  .subtitulo {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 600px) {
+  .folder-item {
+    width: 80px;
+  }
+  img {
+    width: 44px;
+    height: 44px;
+  }
+  .folder-item span {
+    font-size: 0.8rem;
+  }
+
+}
