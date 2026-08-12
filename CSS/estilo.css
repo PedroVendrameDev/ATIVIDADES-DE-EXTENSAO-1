@@ -102,6 +102,59 @@ img {
   height: 56px;
 }
 
+/* ===== QUEM SOU EU ===== */
+
+section {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #3a7d1f;
+  background-repeat: repeat;
+  padding: 60px 80px;
+
+}
+
+.quemsoueu {
+  background-color: #0d2b00;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.texto {
+  color: #fff;
+  max-width: 550px;
+}
+
+.texto h1 {
+  font-size: 3rem;
+  margin-bottom: 25px;
+}
+
+.texto p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.texto p.destaque {
+  font-weight: bold;
+}
+
+/* Moldura da foto */
+.foto-moldura {
+  width: 280px;
+  height: 380px;
+  background: #fff;
+  border: 3px solid #5b2c9e;
+  border-radius: 20px;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+
 /* ===== RESPONSIVO ===== */
 @media (max-width: 700px) {
    .saudacao {
