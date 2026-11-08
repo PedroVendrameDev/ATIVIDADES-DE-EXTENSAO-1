@@ -1,183 +1,955 @@
+/* =====================================================================
+   PORTFÓLIO DE PEDRO VENDRAME  |  estilo.css
+   Visual inspirado no Windows XP (tema "Luna").
+
+   Este arquivo define COMO o site parece: cores, tamanhos, fontes,
+   espaçamentos e o comportamento em celular.
+   O conteúdo (textos e links) fica em index.html.
+
+   ÍNDICE
+     1. Variáveis (cores e fontes)  <- o melhor lugar para ajustar o visual
+     2. Reset e base
+     3. Hero (primeira tela)
+     4. Área das seções e janela XP
+     5. Peças reutilizáveis (botões, chips, listas)
+     6. Seção Quem sou eu
+     7. Seção Projetos
+     8. Seção Faculdade
+     9. Seção Trabalhe comigo
+    10. Rodapé
+    11. Barra de tarefas
+    12. Responsivo (celular e tablet)
+
+   DICAS DE LEITURA
+     - Seletor com ponto (.janela) = classe, usada no HTML como class="janela".
+     - Seletor com # (#inicio)    = id.
+     - Cores em #RRGGBB (hexadecimal). Dá para escolher uma em qualquer
+       "color picker" na internet.
+     - px = pixels | rem = tamanho relativo à fonte | vw = % da largura da tela
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. VARIÁVEIS
+   Valores guardados com nome. Mudar aqui muda o site inteiro.
+   Uso no resto do arquivo: var(--nome)
+   ===================================================================== */
+:root {
+  /* ----- Cores do tema Luna (Windows XP) ----- */
+  --azul-borda: #0831d9;       /* moldura azul das janelas */
+  --azul-escuro: #003c9e;      /* títulos e textos de destaque */
+  --azul-selecao: #316ac5;     /* cor de "item selecionado" (hover, detalhes) */
+  --bege: #ece9d8;             /* fundo do corpo das janelas */
+  --bege-claro: #f6f4ea;       /* bege mais claro (moldura da foto, cartões) */
+  --bege-borda: #aca899;       /* bordas cinza-bege */
+  --verde-1: #5fbf4a;          /* verde claro (botão verde, marcadores) */
+  --verde-2: #2f8a22;          /* verde escuro (botão verde, marcadores) */
+  --verde-escuro: #1f5a14;     /* borda dos itens verdes */
+  --vermelho-1: #e8754f;       /* botão fechar (claro) */
+  --vermelho-2: #c7371a;       /* botão fechar (escuro) */
+  --texto: #1a1a1a;            /* cor padrão dos textos */
+
+  /* ----- Fontes ----- */
+  /* Tahoma é a fonte clássica do XP; as demais são plano B caso falte no aparelho */
+  --fonte: Tahoma, "Segoe UI", Verdana, "DejaVu Sans", sans-serif;
+  /* Trebuchet MS é a fonte dos títulos do XP */
+  --fonte-titulo: "Trebuchet MS", Tahoma, Verdana, sans-serif;
+}
+
+
+/* =====================================================================
+   2. RESET E BASE
+   ===================================================================== */
+
+/* Zera as margens padrão do navegador e faz o tamanho de cada caixa
+   incluir borda e espaçamento interno (facilita as contas de largura). */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Tahoma', sans-serif;
+/* Rolagem suave ao clicar nas pastas e abas.
+   scroll-padding-top deixa uma folguinha ao chegar na seção. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
 }
 
-main {
-  background-image: url('/IMAGENS/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
+/* Impede que a página "balance" para os lados no celular */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Estilo geral de todo o texto do site */
+body {
+  font-family: var(--fonte);
+  font-size: 15px;
+  color: var(--texto);
+  background: #3a7d1f;      /* verde de segurança enquanto a imagem carrega */
+  padding-bottom: 40px;     /* abre espaço para a barra de tarefas não cobrir o fim da página */
+}
+
+/* Imagens como bloco (evita um espacinho estranho embaixo delas) */
+img {
+  display: block;
+}
+
+/* Cor padrão dos links */
+a {
+  color: var(--azul-borda);
+}
+
+
+/* =====================================================================
+   3. HERO  |  Primeira tela com título e pastas
+   ===================================================================== */
+
+/* Faixa de tela cheia com a imagem do XP ao fundo */
+.hero {
+  background: url('../IMAGENS/background.jpg') center / cover no-repeat;
+  min-height: 100vh;         /* 100vh = altura inteira da tela */
   width: 100%;
-  display: flex;
+  display: flex;             /* flex + centralização: coloca o conteúdo no meio */
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
+  overflow: hidden;
 }
 
+/* Caixa que limita a largura do conteúdo central */
 .conteudo {
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
   text-align: center;
 }
 
-/* saudação no topo */
+/* "Oi, eu sou o Pedro Vendrame" */
 .saudacao {
-  font-size: clamp(3rem, 4vw, 2.4rem);
+  font-family: var(--fonte-titulo);
+  /* clamp(mínimo, ideal, máximo): o tamanho cresce com a tela, mas respeita os limites */
+  font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 800;
   color: #fff;
-  -webkit-text-stroke: 2px #2f4a17;
+  -webkit-text-stroke: 2px #1a1a1a;   /* contorno preto nas letras */
+  paint-order: stroke fill;           /* contorno por fora, sem comer a letra */
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
-/* bloco do título PORTIFÓLIO + Profissional sobreposto */
+/* Caixa que segura "PORTFÓLIO" e "Profissional" juntos.
+   position: relative permite posicionar o "Profissional" por cima. */
 .titulo-wrap {
   position: relative;
   display: inline-block;
   margin-bottom: 50px;
 }
 
+/* A palavra PORTFÓLIO */
 .titulo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 200px;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(64px, 15vw, 200px);  /* mude o 200px para deixá-la maior ou menor no computador */
   line-height: 0.9;
-  color: #29580b;
-  -webkit-text-stroke: 0.1px #0d2b00;
+  color: #29580b;                        /* verde escuro */
+  -webkit-text-stroke: 2px #163303;
+  paint-order: stroke fill;
   text-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
-  letter-spacing: 5px;
+  letter-spacing: 5px;                   /* espaço entre as letras */
 }
 
+/* A palavra "Profissional" escrita em cima do título */
 .subtitulo {
-  position: absolute;
-  bottom: 30%;
+  position: absolute;       /* posição livre dentro do .titulo-wrap */
+  bottom: 30%;              /* distância da base: aumente para subir a palavra */
   left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Playfair Display', serif;
+  transform: translateX(-50%);   /* centraliza na horizontal */
+  font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   font-weight: 700;
-  font-size: 55px;
+  font-size: clamp(26px, 5vw, 55px);
   color: #111;
 }
 
-/* ===== NAV DE PASTAS ===== */
+/* ----- Pastas (ícones da "área de trabalho") ----- */
+
+/* Linha que alinha as pastas e quebra para a linha de baixo se faltar espaço */
 .pasta-nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: clamp(16px, 3vw, 40px);
+  gap: clamp(12px, 3vw, 40px);   /* espaço entre as pastas */
 }
 
-.pasta-item{
+/* Cada pasta: imagem em cima, nome embaixo */
+.pasta-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  width: 111px;
+  width: 118px;
+  padding: 6px 4px;
+  border: 1px dotted transparent;   /* borda invisível; aparece no foco do teclado */
   transition: transform 0.2s ease;
 }
 
+/* Imagem da pasta */
+.pasta-item img {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.35));
+}
+
+/* Nome da pasta */
 .pasta-item span {
   margin-top: 6px;
-  font-weight: 700;
+  padding: 1px 4px;
   font-size: 0.95rem;
   color: #fff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.85);
   text-align: center;
-  font-family: 'tahoma', sans-serif;
 }
 
+/* Ao passar o mouse, a pasta sobe um pouquinho */
 .pasta-item:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
 }
 
-img {
-  width: 56px;
-  height: 56px;
+/* Ao passar o mouse (ou usar Tab), o nome fica azul, como item selecionado no XP */
+.pasta-item:hover span,
+.pasta-item:focus-visible span {
+  background: var(--azul-selecao);
+  text-shadow: none;
 }
 
-/* ===== QUEM SOU EU ===== */
-
-section {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #3a7d1f;
-  background-repeat: repeat;
-  padding: 60px 80px;
-
+/* Contorno tracejado ao navegar com o teclado (acessibilidade) */
+.pasta-item:focus-visible {
+  outline: none;
+  border-color: #fff;
 }
 
-.quemsoueu {
-  background-color: #0d2b00;
+
+/* =====================================================================
+   4. ÁREA DAS SEÇÕES E JANELA XP
+   ===================================================================== */
+
+/* Área que contém todas as janelas, com o fundo de grama */
+.secoes {
+  position: relative;
+  clip-path: inset(0);       /* recorta o fundo fixo para aparecer só nesta área */
+  padding: 70px 24px 40px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
-  max-width: 1100px;
-  margin: 0 auto;
+  flex-direction: column;    /* janelas uma embaixo da outra */
+  align-items: center;
+  gap: 56px;                 /* distância entre as janelas */
 }
 
-.texto {
+/* Fundo de grama: fica FIXO na tela enquanto a página rola (efeito de papel de parede).
+   "auto 240%" amplia a imagem para só aparecer a grama.
+   Para mostrar mais céu, diminua o 240%; para só grama, aumente. */
+.secoes::before {
+  content: "";
+  position: fixed;
+  inset: 0;                  /* ocupa a tela toda */
+  z-index: -1;               /* fica atrás das janelas */
+  background: #3a7d1f url('../IMAGENS/background.jpg') center bottom / auto 240% no-repeat;
+}
+
+/* ----- A janela ----- */
+
+/* Moldura azul externa da janela */
+.janela {
+  width: 100%;
+  max-width: 1040px;         /* largura máxima da janela no computador */
+  background: var(--azul-borda);
+  border-radius: 9px 9px 3px 3px;
+  padding: 0 4px 4px;        /* espessura da moldura azul */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(0, 20, 120, 0.6);
+}
+
+/* Barra azul do topo com degradê típico do XP */
+.barra-titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 4px 0 6px;
+  border-radius: 7px 7px 0 0;
+  background: linear-gradient(to bottom,
+    #0997ff 0%, #0053ee 8%, #0050ee 40%, #0066ff 88%, #0054e6 100%);
+}
+
+/* Pastinha pequena na barra */
+.barra-icone {
+  width: 20px;
+  height: 20px;
+}
+
+/* Título da janela (texto branco com sombra azul) */
+.barra-titulo h2 {
+  flex: 1;                   /* ocupa o espaço que sobra, empurrando os botões para a direita */
+  font-family: var(--fonte-titulo);
+  font-size: 1.05rem;
+  font-weight: 700;
   color: #fff;
-  max-width: 550px;
+  text-shadow: 1px 1px 0 #0a246a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;   /* corta com "..." se o título for grande demais */
 }
 
-.texto h1 {
-  font-size: 3rem;
-  margin-bottom: 25px;
+/* Grupo dos 3 botões (minimizar, maximizar, fechar) */
+.barra-botoes {
+  display: flex;
+  gap: 3px;
 }
 
-.texto p {
+/* Cada botão decorativo (a tag <i> é usada só como caixinha) */
+.barra-botoes i {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  background: linear-gradient(135deg, #5b9bff, #1c5de0);
+  border: 1px solid #fff;
+  border-radius: 4px;
+  user-select: none;
+}
+
+/* O botão de fechar é vermelho */
+.barra-botoes i.fechar {
+  background: linear-gradient(135deg, var(--vermelho-1), var(--vermelho-2));
+}
+
+/* Corpo bege da janela, onde fica o conteúdo */
+.janela-corpo {
+  background: var(--bege);
+  /* espaçamento interno: topo/base 32px e 30px; laterais crescem com a tela */
+  padding: 32px clamp(18px, 4vw, 40px) 30px;
+}
+
+/* Pequeno texto em maiúsculas acima de títulos */
+.eyebrow {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--azul-escuro);
+  margin-bottom: 6px;
+}
+
+/* Parágrafo de introdução de cada janela */
+.intro {
+  font-size: 1.05rem;
+  line-height: 1.6;           /* altura da linha: deixa o texto respirar */
+  margin-bottom: 24px;
+  max-width: 70ch;            /* limita a largura para facilitar a leitura */
+}
+
+/* Linha fina com texto no final de algumas janelas */
+.rodape-janela {
+  margin-top: 26px;
+  padding-top: 14px;
+  border-top: 1px solid var(--bege-borda);
+  font-size: 0.9rem;
+  color: #444;
+}
+
+
+/* =====================================================================
+   5. PEÇAS REUTILIZÁVEIS
+   ===================================================================== */
+
+/* ----- Botões ----- */
+
+/* Linha que agrupa botões lado a lado */
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+/* Botão padrão (prata) */
+.botao {
+  display: inline-block;
+  padding: 9px 22px;
+  font-family: var(--fonte);
   font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  text-align: justify;
+  font-weight: 700;
+  text-decoration: none;
+  color: #000;
+  background: linear-gradient(to bottom, #fff 0%, #ecebe5 70%, #d6d0c5 100%);
+  border: 1px solid #003c74;
+  border-radius: 4px;
+  transition: box-shadow 0.15s ease, transform 0.1s ease;
 }
 
-.texto p.destaque {
-  font-weight: bold;
+/* Borda laranja ao passar o mouse (como no XP) */
+.botao:hover {
+  box-shadow: inset 0 0 0 2px #f8b636;
 }
 
-/* Moldura da foto */
-.foto-moldura {
-  width: 280px;
-  height: 380px;
+/* Afunda 1px ao clicar */
+.botao:active {
+  transform: translateY(1px);
+}
+
+/* Contorno ao navegar pelo teclado */
+.botao:focus-visible {
+  outline: 2px dotted #000;
+  outline-offset: 2px;
+}
+
+/* Variação verde (botão principal). Use junto: class="botao botao-verde" */
+.botao-verde {
+  color: #fff;
+  background: linear-gradient(to bottom, #6fd05a 0%, #3da82d 50%, #2f8a22 100%);
+  border-color: var(--verde-escuro);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.45);
+}
+
+.botao-verde:hover {
+  box-shadow: inset 0 0 0 2px #c5f2a6;
+}
+
+/* ----- Chips (etiquetinhas de tecnologias) ----- */
+
+/* Título pequeno em negrito acima de um grupo de chips */
+.rotulo {
+  font-weight: 700;
+  margin: 22px 0 8px;
+}
+
+/* Lista de chips: sem marcadores, lado a lado, quebrando linha quando precisar */
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Cada chip */
+.chips li {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--azul-escuro);
   background: #fff;
-  border: 3px solid #5b2c9e;
+  border: 1px solid var(--azul-selecao);
+  border-radius: 3px;
+}
+
+/* Versão menor, usada nos cartões de projeto */
+.chips-pequenos {
+  margin: 14px 0;
+}
+
+.chips-pequenos li {
+  padding: 2px 9px;
+  font-size: 0.78rem;
+}
+
+/* ----- Lista com quadradinho verde no lugar da bolinha ----- */
+.lista-xp {
+  list-style: none;
+  display: grid;
+  gap: 8px;                   /* espaço entre os itens */
+  margin-bottom: 18px;
+}
+
+.lista-xp li {
+  position: relative;
+  padding-left: 22px;         /* abre espaço para o quadradinho */
+  line-height: 1.45;
+}
+
+/* O quadradinho verde, desenhado só com CSS (sem imagem) */
+.lista-xp li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.4em;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, var(--verde-1), var(--verde-2));
+  border: 1px solid var(--verde-escuro);
+  border-radius: 2px;
+}
+
+
+/* =====================================================================
+   6. SEÇÃO QUEM SOU EU
+   ===================================================================== */
+
+/* Texto de um lado, foto do outro */
+.quem {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(24px, 4vw, 48px);
+}
+
+/* Coluna do texto: ocupa todo o espaço que a foto deixar */
+.quem-texto {
+  flex: 1;
+  min-width: 0;               /* evita que textos longos estourem a coluna */
+}
+
+/* Nome grande */
+.nome {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2rem, 4.5vw, 2.9rem);
+  line-height: 1.1;
+  color: var(--azul-escuro);
+  margin-bottom: 14px;
+}
+
+/* Frase de apresentação */
+.lead {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+/* Grade de quadradinhos de informação (2 colunas) */
+.fatos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);   /* troque o 2 por 3 para ter 3 colunas */
+  gap: 10px;
+}
+
+/* Cada quadradinho: fundo branco com faixa azul na esquerda */
+.fatos div {
+  background: #fff;
+  border: 1px solid var(--bege-borda);
+  border-left: 4px solid var(--azul-selecao);
+  padding: 9px 12px;
+}
+
+/* Título pequeno do quadradinho (Idade, Formação...) */
+.fatos dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #666;
+}
+
+/* Informação do quadradinho */
+.fatos dd {
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* ----- Moldura da foto ----- */
+.foto-moldura {
+  width: 300px;                  /* largura da foto no computador */
+  aspect-ratio: 280 / 380;       /* proporção retrato (largura / altura) */
+  flex-shrink: 0;                /* não deixa a foto encolher */
+  background: var(--bege-claro);
+  border: 5px solid var(--bege-claro);
+  border-radius: 26px;           /* cantos arredondados */
+  box-shadow: 0 0 0 2px var(--azul-selecao), 0 8px 18px rgba(0, 0, 0, 0.35);
+  overflow: hidden;              /* corta o que passar da moldura */
+}
+
+/* A foto em si */
+.foto-moldura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             /* preenche a moldura cortando as sobras, sem esticar */
+  /* Qual parte da foto fica visível: "horizontal vertical".
+     38% 20% mantém o rosto no enquadramento. Ajuste se trocar a foto. */
+  object-position: 38% 20%;
   border-radius: 20px;
-  padding: 6px;
+}
+
+
+/* =====================================================================
+   7. SEÇÃO PROJETOS
+   ===================================================================== */
+
+/* Grade dos cartões: cada coluna tem no mínimo 300px.
+   Cabendo, ficam lado a lado; senão, um embaixo do outro (automático). */
+.grade-projetos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+}
+
+/* Cartão de um projeto */
+.projeto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid var(--bege-borda);
+  border-radius: 4px;
+  padding: 22px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);   /* sombra "dura", estilo anos 2000 */
+}
+
+.projeto-topo {
+  margin-bottom: 10px;
+}
+
+/* Etiqueta verde acima do nome do projeto */
+.projeto-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: linear-gradient(to bottom, #6fd05a, #2f8a22);
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+
+/* Nome do projeto */
+.projeto h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  color: var(--azul-escuro);
+}
+
+/* Descrição do projeto */
+.projeto > p {
+  line-height: 1.55;
+}
+
+/* margin-top: auto empurra o botão para o fim do cartão,
+   deixando os botões alinhados mesmo com textos de tamanhos diferentes */
+.projeto .botao {
+  margin-top: auto;
+}
+
+
+/* =====================================================================
+   8. SEÇÃO FACULDADE
+   ===================================================================== */
+
+/* Nome do curso */
+.curso {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.6rem, 3.6vw, 2.3rem);
+  line-height: 1.15;
+  color: var(--azul-escuro);
+  margin-bottom: 12px;
+}
+
+/* Grade dos cartões de números (3 anos, 2.100 h...) */
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+/* Cada cartão de número */
+.numero {
+  background: linear-gradient(to bottom, #fff, var(--bege-claro));
+  border: 1px solid var(--bege-borda);
+  border-top: 4px solid var(--azul-selecao);
+  padding: 14px 16px;
+  text-align: center;
+}
+
+/* O número grande */
+.numero strong {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-size: 1.9rem;
+  color: var(--azul-escuro);
+}
+
+/* A legenda embaixo do número */
+.numero span {
+  font-size: 0.85rem;
+  color: #444;
+}
+
+/* Grade das duas caixas ("O que estudo" e "Por que isso importa") */
+.duas-colunas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+/* Cada caixa branca */
+.caixa {
+  background: #fff;
+  border: 1px solid var(--bege-borda);
+  padding: 18px 20px 4px;
+}
+
+/* Título da caixa: faixa azul no topo, como uma mini barra de título */
+.caixa h4 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.1rem;
+  color: #fff;
+  background: linear-gradient(to bottom, #0a5fe8, #0050ee);
+  margin: -18px -20px 14px;     /* margem negativa: faz a faixa encostar nas bordas da caixa */
+  padding: 7px 20px;
+  text-shadow: 1px 1px 0 #0a246a;
+}
+
+
+/* =====================================================================
+   9. SEÇÃO TRABALHE COMIGO
+   ===================================================================== */
+
+/* Grade dos contatos: 2 colunas (vira 1 no celular, lá em "Responsivo") */
+.redes {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Cartão de cada contato (ícone + nome + usuário) */
+.rede {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  text-decoration: none;
+  color: var(--texto);
+  background: #fff;
+  border: 1px solid var(--bege-borda);
+  border-radius: 4px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+/* Ao passar o mouse: fica azul "selecionado" e sobe um pouco */
+.rede:hover,
+.rede:focus-visible {
+  background: var(--azul-selecao);
+  color: #fff;
+  transform: translateY(-3px);
+  outline: none;
+}
+
+/* Ícone da rede (arquivos .svg de IMAGENS/icones/).
+   Fica sobre uma plaquinha branca para aparecer bem também no hover azul.
+   Para aumentar o ícone, mude width/height. */
+.rede-icone {
   flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  padding: 9px;
+  background: #fff;
+  border: 1px solid var(--bege-borda);
+  border-radius: 10px;
+}
+
+/* Bloco de texto ao lado do ícone */
+.rede-texto {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Nome da rede */
+.rede-texto strong {
+  font-size: 1.05rem;
+}
+
+/* @usuário ou e-mail */
+.rede-texto small {
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;      /* quebra e-mails longos em vez de estourar o cartão */
+  opacity: 0.8;
 }
 
 
-/* ===== RESPONSIVO ===== */
-@media (max-width: 700px) {
-   .saudacao {
-    font-size: 2.4rem;
+/* =====================================================================
+   10. RODAPÉ
+   ===================================================================== */
+.rodape {
+  color: #fff;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);   /* sombra para ler sobre a grama */
+  padding: 10px 0 20px;
+}
+
+
+/* =====================================================================
+   11. BARRA DE TAREFAS (fixa embaixo da tela)
+   ===================================================================== */
+.taskbar {
+  position: fixed;              /* fixa na tela, mesmo rolando a página */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;                  /* fica na frente de todo o resto */
+  height: 36px;
+  display: flex;
+  align-items: stretch;
+  background: linear-gradient(to bottom,
+    #3168d5 0%, #245edb 10%, #245edb 85%, #1941a5 100%);
+  border-top: 1px solid #5b8cf0;
+}
+
+/* Botão verde "iniciar" */
+.iniciar {
+  display: flex;
+  align-items: center;
+  padding: 0 26px 0 16px;
+  text-decoration: none;
+  color: #fff;
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(to bottom, #5fc254 0%, #3c9d2f 12%, #3c9d2f 85%, #2b7a21 100%);
+  border-radius: 0 14px 14px 0;   /* canto direito arredondado */
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.iniciar:hover {
+  filter: brightness(1.1);        /* clareia ao passar o mouse */
+}
+
+/* Área das abas (uma por seção) */
+.taskbar-abas {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  overflow-x: auto;               /* no celular, as abas rolam para o lado */
+  scrollbar-width: none;          /* esconde a barrinha de rolagem (Firefox) */
+}
+
+.taskbar-abas::-webkit-scrollbar {
+  display: none;                  /* esconde a barrinha de rolagem (Chrome/Safari) */
+}
+
+/* Cada aba */
+.taskbar-abas a {
+  flex: 0 1 160px;                /* até 160px de largura, encolhendo se faltar espaço */
+  min-width: 0;
+  padding: 5px 12px;
+  font-size: 0.85rem;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: linear-gradient(to bottom, #3c81f3, #2a63d6);
+  border: 1px solid #1941a5;
+  border-radius: 3px;
+}
+
+.taskbar-abas a:hover {
+  filter: brightness(1.12);
+}
+
+/* Aba da seção que está na tela agora: aparência de botão "apertado".
+   A classe "ativa" é ligada/desligada por JS/script.js */
+.taskbar-abas a.ativa {
+  background: linear-gradient(to bottom, #1e4fb8, #2559c9);
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Bandeja do sistema (relógio) no canto direito */
+.bandeja {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  color: #fff;
+  font-size: 0.85rem;
+  background: linear-gradient(to bottom, #0f9ff0, #0b84e0 50%, #0a76cc);
+  border-left: 1px solid #0a3d8a;
+  box-shadow: inset 1px 0 0 #1a8fe3;
+}
+
+
+/* =====================================================================
+   12. RESPONSIVO
+   @media aplica as regras só quando a condição é verdadeira.
+   max-width: 800px = "em telas de até 800px de largura" (tablet e celular)
+   ===================================================================== */
+
+/* Tablet e celular */
+@media (max-width: 800px) {
+
+  /* Contatos em uma coluna só */
+  .redes {
+    grid-template-columns: 1fr;
   }
-  .titulo {
-    font-size: 120px;
+
+  /* Foto vai para cima do texto e fica centralizada */
+  .quem {
+    flex-direction: column-reverse;
+    align-items: center;
   }
-  .subtitulo {
-    font-size: 35px;
+
+  .foto-moldura {
+    width: min(300px, 80%);
+  }
+
+  .quem-texto {
+    width: 100%;
   }
 }
 
-@media (max-width: 600px) {
-  .folder-item {
-    width: 80px;
-  }
-  img {
-    width: 44px;
-    height: 44px;
-  }
-  .folder-item span {
-    font-size: 0.8rem;
+/* Celular pequeno */
+@media (max-width: 560px) {
+
+  /* Menos espaço em volta das janelas */
+  .secoes {
+    padding: 40px 12px 30px;
+    gap: 36px;
   }
 
+  /* Quadradinhos de informação e contatos em uma coluna */
+  .fatos,
+  .redes {
+    grid-template-columns: 1fr;
+  }
+
+  /* Pastas menores */
+  .pasta-item {
+    width: 96px;
+  }
+
+  .pasta-item img {
+    width: 52px;
+    height: 52px;
+  }
+
+  /* Só o botão de fechar fica na barra de título */
+  .barra-botoes i:not(.fechar) {
+    display: none;
+  }
+
+  /* Abas da barra de tarefas com tamanho do texto */
+  .taskbar-abas a {
+    flex: 0 0 auto;
+  }
+
+  .bandeja {
+    padding: 0 8px;
+  }
+}
+
+/* Pessoas que pedem "menos movimento" no sistema: desliga animações e rolagem suave */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
 }

@@ -1,33 +1,85 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<!--
+  =====================================================================
+  PORTFÓLIO DE PEDRO VENDRAME  |  index.html
+  =====================================================================
+  Este arquivo é a ESTRUTURA e o CONTEÚDO do site (textos, links, fotos).
+  O visual (cores, tamanhos, fontes) fica em  CSS/estilo.css
+  O comportamento (relógio, destaque da barra de tarefas) fica em  JS/script.js
+
+  COMO ATUALIZAR O SITE (resumo rápido)
+  ---------------------------------------------------------------------
+  - Trocar um texto ........... procure o texto aqui e edite entre as tags.
+  - Trocar a foto ............. substitua o arquivo IMAGENS/pedro.jpg
+                                (mantenha o mesmo nome) ou mude o "src" da foto.
+  - Adicionar um projeto ...... copie um bloco <article class="projeto">
+                                inteiro (na seção PROJETOS) e cole logo depois.
+  - Trocar link de rede social  procure a seção "TRABALHE COMIGO" e mude o href.
+  - Adicionar nova seção ...... veja o passo a passo no final da seção
+                                "TRABALHE COMIGO" (perto do fim deste arquivo).
+
+  DICA: sempre que mexer, salve e abra o index.html no navegador
+  (ou aperte F5 / Ctrl+R se ele já estiver aberto) para ver o resultado.
+-->
+<html lang="pt-BR"><!-- lang: idioma da página (ajuda leitores de tela e buscadores) -->
+
 <head>
+  <!-- Codificação de caracteres: permite acentos como ã, ç, é -->
   <meta charset="UTF-8">
+
+  <!-- Faz o site se ajustar à largura do celular -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Título que aparece na ABA do navegador e nos resultados do Google -->
   <title>Pedro Vendrame | Portfólio Profissional</title>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Playfair+Display:ital@1&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Descrição que aparece abaixo do título nos resultados do Google -->
+  <meta name="description" content="Portfólio de Pedro Luis Vendrame, 25 anos, estudante de Tecnologia em Sistemas para Internet no IFSP. Desenvolvimento web, projetos e contato.">
+
+  <!-- Ícone da aba do navegador (favicon): a pasta do Windows XP.
+       Para trocar, substitua os arquivos em IMAGENS/ mantendo os nomes. -->
+  <link rel="icon" href="IMAGENS/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="IMAGENS/favicon-180.png">
+
+  <!-- Fontes do Google: Bebas Neue (título PORTFÓLIO) e Playfair Display (palavra "Profissional").
+       As demais fontes (Tahoma e Trebuchet MS) já vêm instaladas no computador. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+
+  <!-- Liga o arquivo de estilos (visual do site) -->
   <link rel="stylesheet" href="CSS/estilo.css">
 </head>
+
 <body>
 
-  <main>
-
+  <!-- =================================================================
+       HERO  |  Primeira tela: saudação, título e as pastas de navegação
+       ================================================================= -->
+  <main class="hero" id="inicio">
     <div class="conteudo">
-      
+
+      <!-- Saudação no topo. O <strong> deixa o nome em negrito. -->
       <p class="saudacao">Oi, eu sou o <strong>Pedro Vendrame</strong></p>
+
+      <!-- Título grande com a palavra "Profissional" escrita por cima dele -->
       <div class="titulo-wrap">
-        <h1 class="titulo">PORTIFÓLIO</h1>
+        <h1 class="titulo">PORTFÓLIO</h1>
         <span class="subtitulo">Profissional</span>
       </div>
 
-      <nav class="pasta-nav">
+      <!-- PASTAS: cada link leva (rola a página) até uma seção.
+           href="#quemsoueu" precisa ser igual ao id="quemsoueu" da seção.
+           Para adicionar uma pasta nova, copie um bloco <a> e mude href e texto. -->
+      <nav class="pasta-nav" aria-label="Seções do portfólio">
 
         <a href="#quemsoueu" class="pasta-item">
           <img src="IMAGENS/IconePasta.png" alt="">
           <span>Quem sou eu</span>
-        </a>   
-        
+        </a>
+
         <a href="#projetos" class="pasta-item">
-          <img src="IMAGENS/IconePasta.png" alt="" class="pastinha">
+          <img src="IMAGENS/IconePasta.png" alt="">
           <span>Projetos</span>
         </a>
 
@@ -36,13 +88,8 @@
           <span>Faculdade</span>
         </a>
 
-        <a href="#extensao" class="pasta-item">
-          <img src="IMAGENS/IconePasta.png" alt="">          
-          <span>Atividade de Extensão</span>
-        </a>
-
         <a href="#contato" class="pasta-item">
-          <img src="IMAGENS/IconePasta.png" alt="" >
+          <img src="IMAGENS/IconePasta.png" alt="">
           <span>Trabalhe Comigo</span>
         </a>
 
@@ -50,24 +97,308 @@
     </div>
   </main>
 
-  <section>
-    <div id="quemsoueu">
-      <div class="texto">
-        <h1>Quem sou eu</h1>  
-        <p class="destaque">Olá! Meu nome é Pedro Luis Vendrame, tenho 24 anos e sou apaixonado por tecnologia e tudo que envolve o universo digital.</p>
-        <p>Atualmente curso Tecnologia em Sistemas para Internet, estando no 2º semestre da graduação. Escolhi essa área por acreditar no potencial transformador da internet e por ter grande interesse em entender como sistemas web funcionam por trás das telas que usamos todos os dias.</p>
-        <p>Ao longo da minha jornada acadêmica, venho desenvolvendo conhecimentos em lógica de programação, desenvolvimento web, banco de dados e outras áreas essenciais para quem deseja atuar no mercado de tecnologia. Sou uma pessoa curiosa, que gosta de aprender coisas novas e está sempre em busca de desafios que me façam crescer, tanto pessoal quanto profissionalmente.</p>
-        <p>Fora da faculdade, gosto de explorar novas ferramentas e tendências do mundo tech, além de dedicar tempo a projetos pessoais que me ajudam a colocar em prática o que aprendo em sala de aula. Acredito que a tecnologia tem o poder de conectar pessoas, resolver problemas e criar oportunidades e é exatamente isso que me motiva a seguir nessa área.</p>
-        <p>Este site é um espaço onde compartilho um pouco da minha trajetória, meus projetos e aprendizados. Sinta-se à vontade para navegar e conhecer mais sobre o que venho construindo!</p>
-      </div>
-      
-      <div class="foto-moldura">
-        
-      </div>
-    </div>
- 
-  </section>
-  
 
+  <!-- Área com o fundo de grama onde ficam as janelas (seções) -->
+  <div class="secoes">
+
+    <!-- =================================================================
+         SEÇÃO 1: QUEM SOU EU
+         Estrutura de TODA janela do site:
+           <section class="janela">          -> a janela inteira
+             <div class="barra-titulo">      -> a barra azul do topo
+             <div class="janela-corpo">      -> a área bege com o conteúdo
+         ================================================================= -->
+    <section id="quemsoueu" class="janela">
+
+      <!-- Barra azul do topo (ícone + título + botões decorativos) -->
+      <div class="barra-titulo">
+        <img src="IMAGENS/IconePasta.png" alt="" class="barra-icone">
+        <h2>Quem sou eu</h2>
+        <!-- Botões de minimizar/maximizar/fechar: só enfeite (aria-hidden esconde de leitores de tela) -->
+        <div class="barra-botoes" aria-hidden="true"><i>_</i><i>▢</i><i class="fechar">✕</i></div>
+      </div>
+
+      <!-- Conteúdo da janela: texto à esquerda, foto à direita -->
+      <div class="janela-corpo quem">
+
+        <div class="quem-texto">
+          <p class="eyebrow">Olá, eu sou</p>
+          <h3 class="nome">Pedro Luis Vendrame</h3>
+
+          <!-- Frase de apresentação curta. Escreva aqui o seu "resumo de elevador". -->
+          <p class="lead">Tenho 25 anos e estou me formando como desenvolvedor web. Gosto de transformar ideias em sites que funcionam bem, são claros e agradáveis de usar.</p>
+
+          <!-- Quadradinhos de informação rápida.
+               Para adicionar um: copie uma linha <div><dt>...</dt><dd>...</dd></div>
+               dt = título pequeno | dd = informação -->
+          <dl class="fatos">
+            <div><dt>Idade</dt><dd>25 anos</dd></div>
+            <div><dt>Formação</dt><dd>Tecnologia em Sistemas para Internet, IFSP Birigui</dd></div>
+            <div><dt>Foco</dt><dd>Desenvolvimento web</dd></div>
+            <div><dt>Perfil</dt><dd>Curioso, aprende rápido e gosta de desafios</dd></div>
+          </dl>
+
+          <!-- Etiquetas de tecnologias. Para adicionar: copie um <li> e mude o texto. -->
+          <p class="rotulo">Tecnologias e habilidades</p>
+          <ul class="chips">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Lógica de programação</li>
+            <li>Banco de dados</li>
+            <li>Git e GitHub</li>
+          </ul>
+
+          <!-- Botões de ação. href="#contato" rola até a seção de contato.
+               "botao-verde" = botão verde (destaque) | só "botao" = botão prata -->
+          <div class="acoes">
+            <a class="botao botao-verde" href="#contato">Falar comigo</a>
+            <a class="botao" href="#projetos">Ver projetos</a>
+          </div>
+        </div>
+
+        <!-- Moldura da foto. Para trocar a foto, substitua IMAGENS/pedro.jpg.
+             O texto do "alt" descreve a foto para quem usa leitor de tela. -->
+        <div class="foto-moldura">
+          <img src="IMAGENS/pedro.jpg" alt="Foto de Pedro Vendrame, de óculos e barba, sentado em um bar ao ar livre à noite">
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         SEÇÃO 2: PROJETOS
+         ================================================================= -->
+    <section id="projetos" class="janela">
+
+      <div class="barra-titulo">
+        <img src="IMAGENS/IconePasta.png" alt="" class="barra-icone">
+        <h2>Projetos</h2>
+        <div class="barra-botoes" aria-hidden="true"><i>_</i><i>▢</i><i class="fechar">✕</i></div>
+      </div>
+
+      <div class="janela-corpo">
+        <p class="intro">Projetos que mostram o que já sei colocar em prática. O código está aberto no GitHub.</p>
+
+        <!-- Grade que organiza os projetos lado a lado (e um embaixo do outro no celular).
+             PARA ADICIONAR UM PROJETO NOVO: copie um <article class="projeto"> inteiro,
+             cole logo antes de </div> desta grade e troque tag, título, texto, tecnologias e link. -->
+        <div class="grade-projetos">
+
+          <!-- PROJETO: Pantanal Paulista -->
+          <article class="projeto">
+            <div class="projeto-topo">
+              <!-- Etiqueta verde pequena acima do título -->
+              <span class="projeto-tag">Site completo</span>
+              <h3>Pantanal Paulista</h3>
+            </div>
+
+            <!-- Descrição do projeto -->
+            <p>Site institucional de turismo da Região Turística Pantanal Paulista. Apresenta a região, suas cidades, informações com mapa de cada uma e uma agenda de eventos com carrossel.</p>
+
+            <!-- Tecnologias usadas -->
+            <ul class="chips chips-pequenos">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript puro</li>
+            </ul>
+
+            <!-- Destaques do projeto (cada <li> ganha um quadradinho verde) -->
+            <ul class="lista-xp">
+              <li>Página única, responsiva e organizada em seções</li>
+              <li>Menu com link ativo e carrossel de eventos em JavaScript</li>
+              <li>Estilos organizados com variáveis CSS</li>
+            </ul>
+
+            <!-- Link do repositório. target="_blank" abre em nova aba;
+                 rel="noopener" é uma proteção de segurança (mantenha). -->
+            <a class="botao botao-verde" href="https://github.com/PedroVendrameDev/Pantanal-Paulista" target="_blank" rel="noopener">Ver repositório</a>
+          </article>
+
+          <!-- PROJETO: este portfólio -->
+          <article class="projeto">
+            <div class="projeto-topo">
+              <span class="projeto-tag">Este site</span>
+              <h3>Meu portfólio</h3>
+            </div>
+
+            <p>O site que você está vendo, criado na disciplina de Atividades de Extensão. Inspirado no visual do Windows XP, com pastas, janelas e barra de tarefas.</p>
+
+            <ul class="chips chips-pequenos">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+
+            <ul class="lista-xp">
+              <li>Identidade visual própria e consistente</li>
+              <li>Layout adaptado para celular e computador</li>
+              <li>Navegação por pastas, como na área de trabalho</li>
+            </ul>
+
+            <a class="botao" href="https://github.com/PedroVendrameDev/ATIVIDADES-DE-EXTENSAO-1" target="_blank" rel="noopener">Ver repositório</a>
+          </article>
+
+        </div>
+
+        <!-- Linha de rodapé da janela -->
+        <p class="rodape-janela">Mais projetos em <a href="https://github.com/PedroVendrameDev" target="_blank" rel="noopener">github.com/PedroVendrameDev</a></p>
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         SEÇÃO 3: FACULDADE
+         ================================================================= -->
+    <section id="faculdade" class="janela">
+
+      <div class="barra-titulo">
+        <img src="IMAGENS/IconePasta.png" alt="" class="barra-icone">
+        <h2>Faculdade</h2>
+        <div class="barra-botoes" aria-hidden="true"><i>_</i><i>▢</i><i class="fechar">✕</i></div>
+      </div>
+
+      <div class="janela-corpo">
+        <p class="eyebrow">Instituto Federal de São Paulo, Câmpus Birigui</p>
+        <h3 class="curso">Tecnologia em Sistemas para Internet</h3>
+        <p class="intro">Curso superior de tecnologia, voltado à criação de sistemas e aplicações para a web, em uma instituição federal pública de ensino.</p>
+
+        <!-- Cartões com números do curso.
+             <strong> = número grande | <span> = legenda pequena.
+             Dados conferidos na página oficial do curso (IFSP Birigui). -->
+        <div class="numeros">
+          <div class="numero"><strong>3 anos</strong><span>6 semestres</span></div>
+          <div class="numero"><strong>2.100 h</strong><span>de carga horária</span></div>
+          <div class="numero"><strong>40</strong><span>vagas por ano</span></div>
+          <div class="numero"><strong>Sisu</strong><span>ingresso pela nota do Enem</span></div>
+        </div>
+
+        <!-- Duas caixas lado a lado -->
+        <div class="duas-colunas">
+
+          <div class="caixa">
+            <h4>O que estudo</h4>
+            <!-- Adicione aqui matérias e tecnologias novas conforme for aprendendo -->
+            <ul class="lista-xp">
+              <li>Lógica de programação</li>
+              <li>Desenvolvimento web</li>
+              <li>Banco de dados</li>
+              <li>Projetos práticos que viram portfólio, como este site</li>
+            </ul>
+          </div>
+
+          <div class="caixa">
+            <h4>Por que isso importa</h4>
+            <ul class="lista-xp">
+              <li>Formação focada em prática, em 3 anos</li>
+              <li>Aulas à noite e aos sábados, uma rotina que pede organização e disciplina</li>
+              <li>Curso concorrido: 40 vagas por ano, com ingresso pelo Sisu</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <p class="rodape-janela">Coordenação: Prof. Me. Cássio Stersi dos Santos Neto &middot; <a href="https://bri.ifsp.edu.br/index.php/cursos-superiores/tecnologia-em-sistemas-para-internet" target="_blank" rel="noopener">Página oficial do curso</a></p>
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         SEÇÃO 4: TRABALHE COMIGO (contatos e redes sociais)
+         Os ícones ficam em IMAGENS/icones/ (arquivos .svg baixados de
+         bibliotecas gratuitas: Simple Icons e Devicon).
+         ================================================================= -->
+    <section id="contato" class="janela">
+
+      <div class="barra-titulo">
+        <img src="IMAGENS/IconePasta.png" alt="" class="barra-icone">
+        <h2>Trabalhe comigo</h2>
+        <div class="barra-botoes" aria-hidden="true"><i>_</i><i>▢</i><i class="fechar">✕</i></div>
+      </div>
+
+      <div class="janela-corpo">
+        <p class="intro">Tem uma vaga, estágio ou projeto em mente? Me chame por onde for mais fácil. Vou gostar de conversar.</p>
+
+        <!-- Cada <li> é um cartão de contato. Para adicionar uma rede nova:
+             1) coloque o ícone .svg dentro de IMAGENS/icones/
+             2) copie um <li> abaixo e troque href, src do ícone, nome e @usuário -->
+        <ul class="redes">
+
+          <!-- E-mail: "mailto:" abre o programa de e-mail do visitante -->
+          <li>
+            <a class="rede" href="mailto:pedroluisvendrame@gmail.com">
+              <img class="rede-icone" src="IMAGENS/icones/gmail.svg" alt="">
+              <span class="rede-texto"><strong>E-mail</strong><small>pedroluisvendrame@gmail.com</small></span>
+            </a>
+          </li>
+
+          <li>
+            <a class="rede" href="https://www.linkedin.com/in/pedro-luis-vendrame/" target="_blank" rel="noopener">
+              <img class="rede-icone" src="IMAGENS/icones/linkedin.svg" alt="">
+              <span class="rede-texto"><strong>LinkedIn</strong><small>in/pedro-luis-vendrame</small></span>
+            </a>
+          </li>
+
+          <li>
+            <a class="rede" href="https://github.com/PedroVendrameDev" target="_blank" rel="noopener">
+              <img class="rede-icone" src="IMAGENS/icones/github.svg" alt="">
+              <span class="rede-texto"><strong>GitHub</strong><small>PedroVendrameDev</small></span>
+            </a>
+          </li>
+
+          <li>
+            <a class="rede" href="https://www.instagram.com/pedro.vendrame/" target="_blank" rel="noopener">
+              <img class="rede-icone" src="IMAGENS/icones/instagram.svg" alt="">
+              <span class="rede-texto"><strong>Instagram</strong><small>@pedro.vendrame</small></span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!--
+      COMO ADICIONAR UMA SEÇÃO NOVA (ex.: "Certificados")
+      1) Copie uma seção inteira acima (de <section ...> até </section>) e cole aqui.
+      2) Troque o id (ex.: id="certificados") e o título dentro do <h2>.
+      3) Na área HERO (início da página), copie um bloco <a class="pasta-item">
+         e mude o href para "#certificados" e o texto da pasta.
+      4) Na BARRA DE TAREFAS (final do arquivo), copie um <a> e mude
+         href="#certificados" e data-alvo="certificados".
+      O "id", o href da pasta e o data-alvo da barra precisam ser IGUAIS.
+    -->
+
+    <!-- Rodapé com direitos autorais. O ano é atualizado sozinho por JS/script.js -->
+    <footer class="rodape">
+      <p>&copy; <span id="ano">2026</span> Pedro Luis Vendrame</p>
+    </footer>
+
+  </div>
+
+
+  <!-- =================================================================
+       BARRA DE TAREFAS  |  Fixa no rodapé da tela, como no Windows XP.
+       data-alvo deve ser igual ao id da seção (o JS usa isso para
+       destacar a aba da seção que está na tela).
+       ================================================================= -->
+  <div class="taskbar" role="navigation" aria-label="Barra de tarefas">
+
+    <!-- Botão verde "iniciar": volta para o topo da página -->
+    <a href="#inicio" class="iniciar"><span>iniciar</span></a>
+
+    <div class="taskbar-abas">
+      <a href="#quemsoueu" data-alvo="quemsoueu">Quem sou eu</a>
+      <a href="#projetos" data-alvo="projetos">Projetos</a>
+      <a href="#faculdade" data-alvo="faculdade">Faculdade</a>
+      <a href="#contato" data-alvo="contato">Trabalhe comigo</a>
+    </div>
+
+    <!-- Relógio no canto direito (hora atualizada por JS/script.js) -->
+    <div class="bandeja"><span id="relogio">--:--</span></div>
+  </div>
+
+  <!-- Liga o arquivo de comportamento (relógio e destaque das abas) -->
+  <script src="JS/script.js"></script>
 </body>
 </html>
